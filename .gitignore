@@ -137,3 +137,10 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+#自己配置
+node_modules
+dist
+*.pem
+*.cer
+*.log
