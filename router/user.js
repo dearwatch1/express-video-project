@@ -1,10 +1,10 @@
 import express from 'express'
+
+import { userGet, userDelete } from '../controller/userController/userController.js'
 const router = express.Router()
 
 router
-    .get('/list', (req, res) => {
-        console.log(req.method)
-        res.send('/user-list')
-    })
+    .get('/list', userGet)
+    .delete('/delete', userDelete)
 
 export { router }

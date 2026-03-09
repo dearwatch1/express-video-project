@@ -1,14 +1,9 @@
 import express from 'express'
+import { videoGetList, videoGetUser } from '../controller/videoController/videoController.js'
 const router = express.Router()
 
 router
-    .get('/list', (req, res) => {
-        console.log(req.method)
-        res.send('/video-list')
-    })
-    .get('/user', (req, res) => {
-        console.log(req.method)
-        res.send('/video-user')
-    })
+    .get('/list', videoGetList)
+    .get('/user', videoGetUser)
 
 export { router }
