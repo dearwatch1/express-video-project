@@ -3,7 +3,7 @@ import { videoGetList, videoGetUser } from '../controller/videoController/videoC
 const router = express.Router()
 
 router
-    .get('/list', videoGetList)
-    .get('/user', videoGetUser)
+    .get('/lists', videoGetList)
+    .get('/users', videoGetUser)
 
 export { router }

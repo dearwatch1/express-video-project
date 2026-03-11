@@ -1,10 +1,12 @@
 import express from 'express'
 
-import { userGet, userDelete } from '../controller/userController/userController.js'
+import { userGet, userDelete, userPost } from '../controller/userController/userController.js'
+import { register } from '../middleware/validator/userValidator.js'
 const router = express.Router()
 
 router
-    .get('/list', userGet)
+    .post('/registers', register, userPost)
+    .get('/lists', userGet)
     .delete('/delete', userDelete)
 
 export { router }
