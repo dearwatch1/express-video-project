@@ -1,6 +1,10 @@
 import { User } from "../../model/index.js"
+import { createToken } from "../../util/jwt.js"
+
+
 import bcrypt from 'bcrypt'
 import md5 from 'md5'
+import jwt from 'jsonwebtoken'
 
 const userPost = async (req, res) => {
     console.log(req.body)
@@ -28,7 +32,7 @@ const userLogin = async (req, res) => {
     const { email, password } = req.body
     console.log(email, password)
     //先查找邮箱,如果找到，返回user，user里面有password
-    const user = await User.findOne({ email: email }).select('+password').lean()//要加回来 //.lean()把user转换为普通js对象
+    const user = await User.findOne({ email: email }).select('+password').lean()//要加回来  //.lean()把user转换为普通js对象
     if (!user) {
         throw new Error('该邮箱未注册')
     }
@@ -38,6 +42,9 @@ const userLogin = async (req, res) => {
         if (!isPassword) {
             throw new Error('邮箱或密码不正确')
         }
+
+
+        user.token = await createToken(user)
 
         delete user.password
         delete user._id
